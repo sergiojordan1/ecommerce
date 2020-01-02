@@ -27,7 +27,7 @@
 	$tpl->assign( "name", "Obi Wan Kenoby" );
 
 	// assign an array
-	$tpl->assign( "week", array( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ) );
+	$tpl->assign( "week", array( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ));
 
 	// draw the template
 	$tpl->draw( "simple_template" );
