@@ -11,12 +11,12 @@
 			"data" => []
 		];
 
-		public function __construct($opts = array()){
+		public function __construct($opts = array(), $tpldir = "/views/"){
 
 			$this->options = array_merge($this->defaults, $opts);
 
 			$config = array(
-				"tpl_dir" => $_SERVER["DOCUMENT_ROOT"]."/views/",
+				"tpl_dir" => $_SERVER["DOCUMENT_ROOT"].$tpldir,
 				"cache_dir" => $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
 				"debug" => false
 			);
