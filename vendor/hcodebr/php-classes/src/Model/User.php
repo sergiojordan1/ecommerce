@@ -15,7 +15,7 @@
 
 			$user = new User();
 
-			if(isset($_SESSION[User::SESSION]) && (int)$SESSION[User::SESSION]["iduser"] > 0){
+			if (isset($_SESSION[User::SESSION]) && (int)$_SESSION[User::SESSION]["iduser"] > 0) {
 
 				$user->setData($_SESSION[User::SESSION]);
 			}
@@ -25,9 +25,7 @@
 
 		public static function checkLogin($inadmin = true){
 
-			if(!isset($_SESSION[User::SESSION])
-				|| !$_SESSION[User::SESSION]
-				|| !(int)$_SESSION[User::SESSION]["iduser"] > 0){
+			if( !isset($_SESSION[User::SESSION]) || !$_SESSION[User::SESSION] || !(int)$_SESSION[User::SESSION]["iduser"] > 0){
 
 				return false;
 			}
@@ -78,10 +76,16 @@
 
 		public static function verifyLogin($inadmin = true){
 
-			if(User::checkLogin($inadmin)){
+			if(!User::checkLogin($inadmin)){
 
+				if ($inadmin) {
 					header("Location: /admin/login");
-					exit;
+				} 
+				else {
+					header("Location: /login");
+				}
+
+				exit;
 			}
 		}
 
