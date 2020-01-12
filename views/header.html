@@ -112,7 +112,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/">Home</a></li>
                         <li><a href="#">Produtos</a></li>
-                        <li class="active"><a href="/cart">Carrinho</a></li>
+                        <li><a href="/cart">Carrinho</a></li>
                     </ul>
                 </div>  
             </div>

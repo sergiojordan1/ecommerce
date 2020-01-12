@@ -70,7 +70,7 @@
 			$sql = new Sql();
 
 			$results = $sql->select("SELECT * FROM tb_carts WHERE idcart = :idcart", [
-				":idcart" => $idcart				
+				":idcart" => $idcart
 			]);
 
 			if(count($results) > 0){
@@ -154,11 +154,10 @@
  				FROM tb_products a 
  				INNER JOIN tb_cartsproducts b ON a.idproduct = b.idproduct
  				WHERE b.idcart = :idcart AND dtremoved IS NULL", [
-
  					":idcart" => $this->getidcart()
  				]);
 
-			if(count($results) >0){
+			if(count($results) > 0){
 
 				return $results[0];
 			}
@@ -175,15 +174,15 @@
 
 			$totals = $this->getProductsTotals();
 
-			if ($totals['vlheight'] < 2) {
-				$totals['vlheight'] = 2;
-			}
-
-			if ($totals['vllength'] < 16) {
-				$totals['vllength'] = 16;
-			}
-
 			if($totals['nrqtd'] > 0){
+
+				if ($totals['vlheight'] < 2) {
+					$totals['vlheight'] = 2;
+				}
+
+				if ($totals['vllength'] < 16) {
+					$totals['vllength'] = 16;
+				}
 
 				$qs = http_build_query([
 					"nCdEmpresa" => "",
@@ -208,7 +207,7 @@
 
 				if ($result->MsgErro != ''){
 
-					Cart::setMsgError($resuit->MsgErro);
+					Cart::setMsgError($result->MsgErro);
 				}
 				else{
 
@@ -216,7 +215,7 @@
 				}
 
 				$this->setnrdays($result->PrazoEntrega);
-				$this->setvlfreight($result->Valor);
+				$this->setvlfreight(Cart::formatValueToDecimal($result->Valor));
 				$this->setdeszipcode($nrzipcode);
 
 				$this->save();
@@ -256,7 +255,8 @@
 
 		public function updateFreight(){
 
-			if ($this->getdeszipcode() != '') {
+			if ($this->getdeszipcode() != ''){
+
 				$this->setFreight($this->getdeszipcode());
 			}
 		}
@@ -275,10 +275,8 @@
 			$totals = $this->getProductsTotals();
 
 			$this->setvlsubtotal($totals['vlprice']);
-			$this->setvltotal($totals['vlprice'] + $this->getvlfreight());
+			$this->setvltotal($totals['vlprice'] + (float)$this->getvlfreight());
 		}
-
-
 
 	}
 
