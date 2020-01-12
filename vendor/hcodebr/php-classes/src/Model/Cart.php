@@ -46,6 +46,11 @@
 
 		}
 
+		public static function removeFromSession(){
+			
+		    $_SESSION[Cart::SESSION] = NULL;
+		}
+
 		public function setToSession(){
 
 			$_SESSION[Cart::SESSION] = $this->getValues();
