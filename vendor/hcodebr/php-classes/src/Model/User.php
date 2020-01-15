@@ -141,7 +141,7 @@
 
 		 	$sql = new Sql();
 
-		 	$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin) ", array(
+		 	$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
 		 		":iduser"=>$this->getiduser(),
 		 		":desperson"=>utf8_decode($this->getdesperson()),
 		 		":deslogin"=>$this->getdeslogin(),
@@ -284,7 +284,7 @@
 
 			$msg = (isset($_SESSION[User::SUCCESS]) && $_SESSION[User::SUCCESS]) ? $_SESSION[User::SUCCESS] : "";
 
-			User::clearError();
+			User::clearSuccess();
 
 			return $msg;
 		}

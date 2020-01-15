@@ -152,7 +152,6 @@ $app->get('/checkout', function(){
 		$cart->save();
 
 		$cart->getCalculateTotal();
-
 	}
 
 	if (!$address->getdesaddress()) $address->setdesaddress('');
@@ -449,8 +448,9 @@ $app->post('/profile', function(){
 	$user->setData($_POST);
 	$user->update();
 
+	$_SESSION[User::SESSION] = $user->getValues();
+
 	User::setSuccess("Dados alterados com sucesso!");
-	User::clearSuccess();
 
 	header("Location: /profile");
 	exit;
